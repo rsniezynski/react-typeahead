@@ -26,7 +26,8 @@ var Typeahead = React.createClass({
     inputProps: React.PropTypes.object,
     onOptionSelected: React.PropTypes.func,
     onKeyDown: React.PropTypes.func,
-    filterOption: React.PropTypes.func
+    filterOption: React.PropTypes.func,
+    afterInputHTML: React.PropTypes.string
   },
 
   getDefaultProps: function() {
@@ -39,7 +40,8 @@ var Typeahead = React.createClass({
       inputProps: {},
       onOptionSelected: function(option) {},
       onKeyDown: function(event) {},
-      filterOption: null
+      filterOption: null,
+      afterInputHTML: ""
     };
   },
 
@@ -224,6 +226,7 @@ var Typeahead = React.createClass({
           value={this.state.entryValue}
           defaultValue={this.props.defaultValue}
           onChange={this._onTextEntryUpdated} onKeyDown={this._onKeyDown} />
+        <div className="after-input" dangerouslySetInnerHTML={{__html: this.props.afterInputHTML}} />
         { this._renderIncrementalSearchResults() }
       </div>
     );
